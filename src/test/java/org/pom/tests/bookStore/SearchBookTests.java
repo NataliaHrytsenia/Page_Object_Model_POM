@@ -1,11 +1,12 @@
-package org.pom.tests;
+package org.pom.tests.bookStore;
 
-import org.pom.pages.BookStorePage;
+import org.pom.pages.bookStore.BookStorePage;
 import org.pom.pages.HomePage;
+import org.pom.tests.TestBase;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class SearchBookTests extends TestBase{
+public class SearchBookTests extends TestBase {
 
     @BeforeMethod
     public void precondition(){

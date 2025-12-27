@@ -1,10 +1,11 @@
-package org.pom.pages;
+package org.pom.pages.bookStore;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.pom.pages.BasePage;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {//так как в главном классе есть конструктор, то и в дочернем классе нужен конструктор
         super(driver);

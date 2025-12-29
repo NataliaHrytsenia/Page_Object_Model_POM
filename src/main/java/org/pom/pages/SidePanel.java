@@ -3,11 +3,17 @@ package org.pom.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.pom.pages.alertsFrameWindows.FramePage;
+import org.pom.pages.alertsFrameWindows.NestedFramesPage;
 import org.pom.pages.bookStore.BookStorePage;
 import org.pom.pages.bookStore.LoginPage;
 import org.pom.pages.bookStore.ProfilePage;
 import org.pom.pages.elements.BrokenLinksImagesPage;
+import org.pom.pages.elements.ButtonsPage;
 import org.pom.pages.elements.LinksPage;
+import org.pom.pages.widgets.AutoCompletePage;
+import org.pom.pages.widgets.MenuPage;
+import org.pom.pages.widgets.SliderPage;
 
 public class SidePanel extends BasePage{
 
@@ -42,5 +48,51 @@ public class SidePanel extends BasePage{
     public BrokenLinksImagesPage selectBrokenLinksImages() {
         clickWithJSExecutor(brokenLinksImages,0,300);
         return  new BrokenLinksImagesPage(driver);
+    }
+
+    @FindBy (xpath = "//span[.='Frames']")
+    WebElement frames;
+
+    public FramePage selectFrame() {
+        clickWithJSExecutor(frames,0, 300);
+        return  new FramePage(driver);
+    }
+
+    @FindBy (xpath = "//span[.='Nested Frames']")
+    WebElement nestedframes;
+    public NestedFramesPage selectNestedFrames() {
+        clickWithJSExecutor(nestedframes,0,300);
+        return new NestedFramesPage(driver);
+    }
+
+    @FindBy (xpath = "//span[.='Buttons']")
+    WebElement buttons;
+
+    public ButtonsPage selectButtons() {
+        clickWithJSExecutor(buttons,0,300);
+        return new ButtonsPage(driver);
+    }
+
+    @FindBy (xpath = "//span[.='Auto Complete']")
+    WebElement autoComplete;
+
+    public AutoCompletePage selectAutoComplete() {
+        clickWithJSExecutor(autoComplete,0,400);
+        return new AutoCompletePage(driver);
+    }
+
+    @FindBy (xpath = "//span[.='Slider']")
+    WebElement slider;
+
+    public SliderPage selectSlider() {
+        clickWithJSExecutor(slider, 0, 400);
+        return new SliderPage(driver);
+    }
+
+    @FindBy (xpath = "//span[.='Menu']")
+    WebElement menu;
+    public MenuPage selectMenu() {
+        clickWithJSExecutor(menu,0,600);
+        return new MenuPage(driver);
     }
 }

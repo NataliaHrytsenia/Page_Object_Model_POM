@@ -28,7 +28,7 @@ public class BrokenLinksImagesPage extends BasePage {
 
             try {
                 boolean imageDisplayed = (Boolean) ((JavascriptExecutor) driver)
-                        .executeScript("return (tupeof arguments[0].naturalWidth !=undefined && arguments[0]).naturalWidth>0;", image);
+                        .executeScript("return (typeof arguments[0].naturalWidth !=undefined && arguments[0]).naturalWidth>0;", image);
                 if (imageDisplayed) {
                     System.out.println("DISPLAY - OK");
                     System.out.println("**************************");

@@ -11,11 +11,10 @@ import org.pom.pages.bookStore.ProfilePage;
 import org.pom.pages.elements.BrokenLinksImagesPage;
 import org.pom.pages.elements.ButtonsPage;
 import org.pom.pages.elements.LinksPage;
+import org.pom.pages.elements.TextBoxPage;
 import org.pom.pages.forms.PracticeFormPage;
-import org.pom.pages.widgets.AutoCompletePage;
-import org.pom.pages.widgets.MenuPage;
-import org.pom.pages.widgets.SelectMenuPage;
-import org.pom.pages.widgets.SliderPage;
+import org.pom.pages.interactions.DroppablePage;
+import org.pom.pages.widgets.*;
 
 public class SidePanel extends BasePage{
 
@@ -110,5 +109,29 @@ public class SidePanel extends BasePage{
     public PracticeFormPage selectPracticeForm() {
         clickWithJSExecutor(practiceForm,0,300);
         return new PracticeFormPage(driver);
+    }
+
+    @FindBy (xpath = "//span[.='Tool Tips']")
+    WebElement toolTips;
+
+    public ToolTipsPage selectToolTips() {
+        clickWithJSExecutor(toolTips,0,400);
+        return new ToolTipsPage(driver);
+    }
+
+
+    @FindBy (xpath = "//span[.='Droppable']")
+    WebElement droppable;
+
+    public DroppablePage selectDroppable() {
+        clickWithJSExecutor(droppable,0,600);
+        return new DroppablePage(driver);
+    }
+
+    @FindBy (xpath = "//span[.='Text Box']")
+    WebElement textBox;
+    public TextBoxPage selectTextBox() {
+        click(textBox);
+        return new TextBoxPage(driver);
     }
 }

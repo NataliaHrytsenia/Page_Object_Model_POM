@@ -35,6 +35,24 @@ public class PracticeFormTests extends TestBase {
         new PracticeFormPage(driver).enterPersonalData(StudentData.FIRST_NAME,
                 StudentData.LAST_NAME,StudentData.EMAIL,StudentData.PHONE_NUMBER)
                 .selectGender(StudentData.GENDER)
+                //.enterDate(StudentData.DATE)
+                .selectDate("May", "2001", "15") //способ выбать дату из календаря
+                .selectSubjects(StudentData.SUBJECTS)
+                .selectHobby(StudentData.HOBBIES)
+                .uploadFile(StudentData.PHOTO_PATH)
+                .enterAddress(StudentData.ADDRESS)
+                .selectState(StudentData.STATE)
+                .selectCity(StudentData.CITY)
+                .submit()
+                .assertSubmit("Thanks for submitting the form");
+    }
+
+    @Test
+    public void fillStudentFormUsingDataProviderTest(){
+
+        new PracticeFormPage(driver).enterPersonalData(StudentData.FIRST_NAME,
+                        StudentData.LAST_NAME,StudentData.EMAIL,StudentData.PHONE_NUMBER)
+                .selectGender(StudentData.GENDER)
                 .enterDate(StudentData.DATE)
                 .selectSubjects(StudentData.SUBJECTS)
                 .selectHobby(StudentData.HOBBIES)
@@ -42,6 +60,7 @@ public class PracticeFormTests extends TestBase {
                 .enterAddress(StudentData.ADDRESS)
                 .selectState(StudentData.STATE)
                 .selectCity(StudentData.CITY)
-                .submit();
+                .submit()
+                .assertSubmit("Thanks for submitting the form");
     }
 }

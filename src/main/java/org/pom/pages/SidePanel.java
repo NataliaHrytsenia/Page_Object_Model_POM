@@ -11,8 +11,10 @@ import org.pom.pages.bookStore.ProfilePage;
 import org.pom.pages.elements.BrokenLinksImagesPage;
 import org.pom.pages.elements.ButtonsPage;
 import org.pom.pages.elements.LinksPage;
+import org.pom.pages.forms.PracticeFormPage;
 import org.pom.pages.widgets.AutoCompletePage;
 import org.pom.pages.widgets.MenuPage;
+import org.pom.pages.widgets.SelectMenuPage;
 import org.pom.pages.widgets.SliderPage;
 
 public class SidePanel extends BasePage{
@@ -94,5 +96,19 @@ public class SidePanel extends BasePage{
     public MenuPage selectMenu() {
         clickWithJSExecutor(menu,0,600);
         return new MenuPage(driver);
+    }
+
+    @FindBy (xpath = "//span[.='Select Menu']")
+    WebElement selectMenu;
+    public SelectMenuPage selectSelectMenu() {
+        clickWithJSExecutor(selectMenu,0, 600);
+        return new SelectMenuPage(driver);
+    }
+
+    @FindBy (xpath = "//span[.='Practice Form']")
+    WebElement practiceForm;
+    public PracticeFormPage selectPracticeForm() {
+        clickWithJSExecutor(practiceForm,0,300);
+        return new PracticeFormPage(driver);
     }
 }

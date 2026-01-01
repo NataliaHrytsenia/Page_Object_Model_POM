@@ -1,8 +1,10 @@
 package org.pom.pages;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,9 +17,12 @@ public abstract class BasePage { //класс, который отвечает �
 
     public WebDriver driver;
 
+    JavascriptExecutor js;
+
     public BasePage(WebDriver driver) { //сгенерированный конструктор
         this.driver = driver; //передали драйвер
         PageFactory.initElements(driver,this);//строятся вс е страницы проекта
+        js = (JavascriptExecutor) driver;
     }
 
     public void click(WebElement element){//универсальный метод нажатия на кнопку с обращением к веб элементу
@@ -31,8 +36,6 @@ public abstract class BasePage { //класс, который отвечает �
         }
     }
      public void clickWithJSExecutor(WebElement element,int x, int y){
-
-         JavascriptExecutor js = (JavascriptExecutor) driver;//универсальный метод, который убирает если есть реклама или другое
          js.executeScript("window.scrollBy(" + x + "," + y +")");
          element.click();
      }
@@ -59,7 +62,6 @@ public abstract class BasePage { //класс, который отвечает �
         }catch (InterruptedException e){
             throw new RuntimeException(e);
         }
-
     }
 
     public void verifyLinks(String linkUrl) {
@@ -80,5 +82,30 @@ public abstract class BasePage { //класс, который отвечает �
         }catch (Exception ex){
             System.out.println(linkUrl + " - " + ex.getMessage() + "is a broken link");
         }
+    }
+
+    public void hideIframes() {
+        hideAd();//убирает рекламу
+        hideFooter();//убирает нижнюю часть сайта
+    }
+
+    public void hideFooter() {
+        js.executeScript("document.querySelector('footer').style.display='none';");//скрывает футер
+
+    }
+
+    public void hideAd() {
+        js.executeScript("document.getElementById('adplus-anchor').style.display='none';");//скрываем рекламу
+    }
+
+    public void clickWithRectangle(WebElement element, int x, int y) {
+        Rectangle rectangle = element.getRect();
+
+        int xOffset = rectangle.getWidth() / x;
+        int yOffset = rectangle.getHeight() / y;
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        actions.moveByOffset(-xOffset, -yOffset).click().perform();
     }
 }
